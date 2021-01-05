@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>희망조약돌</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+	<script src="jquery-3.1.1.min.js"></script>
+	<script>
+		// 하위메뉴슬라이드 스크립트
+		$(function() {
+			$('.mainMenu>li').mouseover(function() {
+				$(this).children('.subMenu').stop().slideDown();
+			});
+			$('.mainMenu>li').mouseleave(function() {
+				$(this).children('.subMenu').stop().slideUp();
+			});
+		});
+	</script>
+
+	<script>
+		//모바일메뉴 스크립트
+		$(document).ready(function() {
+			mobile_menu();
+		});
+
+		function mobile_menu() {
+			/* 변수 선언 */
+			var $menu = null;
+			var $left_gnb = null; // 영역 전체
+			var $depth1_wrap = null;
+			var $depth1 = null;
+			var $depth1_btn = null;
+
+			/* 시작 함수 */
+			function start() {
+				init();
+				init_event();
+			}
+			/* 변수 초기화 함수 */
+			function init() {
+				$menu = $('.m_mobile');
+				$left_gnb = $('.left_gnbWrap'); // 영역 전체
+				$depth1_wrap = $('.left_gnb>li');
+				$depth1 = $depth1_wrap.children('ul');
+				$depth1_btn = $depth1_wrap.children('a');
+			}
+			/* 이벤트 함수 */
+			function init_event() {
+
+				/* 모바일 메뉴 버튼 클릭했을때 모바일 메뉴영역 나오게 하기 */
+				$menu.click(function(event) {
+					event.preventDefault();
+					$left_gnb.addClass('on');
+				});
+
+				/* x버튼 눌렀을때 모바일 메뉴 닫기 */
+				$('.close').click(function(event) {
+					event.preventDefault();
+
+					$left_gnb.removeClass('on');
+
+					// x버튼 누르면 시간차 약간두고 소메뉴 닫히게 하기
+					setTimeout(function() {
+						$depth1_btn.removeClass('on');
+						$depth1.slideUp();
+					}, 300)
+				});
+
+				/* depth1의 각메뉴 클릭시 depth2 나오게 하기 */
+				$depth1_btn.click(function(event) {
+					event.preventDefault();
+					var $this = $(this);
+					var $this_ul = $this.siblings('ul');
+
+					var check = $this.hasClass('on');
+					if (check) {
+						$this.removeClass('on');
+						$this_ul.stop(true, true).slideUp();
+					} else {
+						$depth1_btn.removeClass('on');
+						$depth1.stop().slideUp();
+						$this.addClass('on');
+						$this_ul.stop(true, true).slideDown();
+					}
+				});
+
+				/* 디바이스 크기 변경시 모바일 메뉴영역 숨기기 */
+				$(window).resize(function() {
+					$left_gnb.removeClass('on');
+				});
+			}
+
+			start(); // 시작 호출
+		}
+	</script>
+	<link href="css/style.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body>
+	<div class="wrap">
+		<header id="header">
+			<div class="logo"><a href="index.html"><img src="img/logo.png" alt="로고"></a></div>
+			<div class="m_logo">
+				<a href="index.html">
+					<img src="img/m_logo.png">
+				</a>
+			</div>
+			<div class="gnb">
+				<!-- 하위슬라이드 메뉴 시작-->
+				<nav>
+					<ul class="mainMenu">
+						<li><a href="sub2.html">희망조약돌</a>
+							<ul class="subMenu">
+								<li><a href="sub2.html">단체소개</a></li>
+								<li><a href="sub2.html">인사말</a></li>
+								<li><a href="sub2.html">조직도</a></li>
+								<li><a href="sub2.html">비전과 미션</a></li>
+							</ul>
+						</li>
+						<li><a href="sub.html">사업소개</a>
+							<ul class="subMenu">
+								<li><a href="sub.html">주요사업</a></li>
+								<li><a href="sub.html">명예의 전당</a></li>
+								<li><a href="sub.html">투명경영</a></li>
+								<li><a href="sub.html">유관기관</a></li>
+							</ul>
+						</li>
+						<li><a href="sub3.html">나눔실천</a>
+							<ul class="subMenu">
+								<li><a href="sub3.html">나눔신청</a></li>
+								<li><a href="sub3.html">나눔방법</a></li>
+								<li><a href="sub3.html">희망날개 캠페인</a></li>
+							</ul>
+						</li>
+						<li><a href="sub4.html">활동사항</a>
+							<ul class="subMenu">
+								<li><a href="sub4.html">희망도시락</a></li>
+								<li><a href="sub4.html">희망급식소</a></li>
+								<li><a href="sub4.html">언론보도</a></li>
+								<li><a href="sub4.html">봉사활동&소식</a></li>
+							</ul>
+						</li>
+						<li><a href="sub5.html">커뮤니티</a>
+							<ul class="subMenu">
+								<li><a href="sub5.html">기부복지뉴스</a></li>
+								<li><a href="sub5.html">카드뉴스</a></li>
+								<li><a href="sub5.html">문의사항</a></li>
+								<li><a href="sub5.html">자원봉사 신청</a></li>
+							</ul>
+						</li>
+					</ul>
+				</nav>
+				<!-- 예전 메뉴
+                <ul class="menu">
+                    <li><a href="sub.html">희망조약돌
+                        <ul class="submenu">
+                            <li><a href="sub.html">단체소개</a></li>
+                            <li><a href="sub.html">인사말</a></li>
+                            <li><a href="sub.html">조직도</a></li>
+                            <li><a href="sub.html">비전과 미션</a></li>
+                        </ul>
+                        </a>
+                    </li>
+                    <li><a href="sub.html">사업소개
+                        <ul class="submenu">
+                            <li><a href="sub.html">주요사업</a></li>
+                            <li><a href="sub.html">명예의 전당</a></li>
+                            <li><a href="sub.html">투명경영</a></li>
+                            <li><a href="sub.html">유관기관</a></li>
+                        </ul>
+                        </a>
+                    </li>
+                    <li><a href="sub.html">나눔실천
+                        <ul class="submenu">
+                            <li><a href="sub.html">나눔신청</a></li>
+                            <li><a href="sub.html">나눔방법</a></li>
+                            <li><a href="sub.html">희망날개 캠페인</a></li>
+                        </ul>
+                        </a>
+                    </li>
+                    <li><a href="sub.html">활동사항
+                        <ul class="submenu">
+                            <li><a href="sub.html">희망도시락</a></li>
+                            <li><a href="sub.html">희망급식소</a></li>
+                            <li><a href="sub.html">언론보도</a></li>
+                            <li><a href="sub.html">봉사활동&소식</a></li>
+                        </ul>
+                        </a>
+                    </li>
+                    <li><a href="sub.html">커뮤니티
+                         <ul class="submenu">
+                            <li><a href="sub.html">기부복지뉴스</a></li>
+                            <li><a href="sub.html">카드뉴스</a></li>
+                            <li><a href="sub.html">문의사항</a></li>
+                            <li><a href="sub.html">자원봉사 신청</a></li>
+                        </ul>
+                        </a>
+                    </li>
+                
+                </ul>
+                예전 메뉴 끝-->
+				<ul class="sns">
+					<li><img src="img/sns1.png" alt="페이스북"></li>
+					<li><img src="img/sns2.png" alt="인스타"></li>
+					<li><img src="img/sns3.png" alt="트위터"></li>
+					<li><img src="img/sns4.png" alt="유튜브"></li>
+					<li><img src="img/sns5.png" alt="네이버"></li>
+					<li><img src="img/sns6.png" alt="카페"></li>
+					<!-- clear -->
+				</ul>
+				<!--<div class="m_mobile"><img src="img/m_mobilemenu.png">
+                </div>
+                <nav class="left_gnbWrap">
+            <a href="#" class="close">close</a>
+            <ul class="left_gnb">
+                <li><a href="sub.html">희망조약돌
+                        <ul class="submenu">
+                            <li><a href="sub.html">단체소개</a></li>
+                            <li><a href="sub.html">인사말</a></li>
+                            <li><a href="sub.html">조직도</a></li>
+                            <li><a href="sub.html">비전과 미션</a></li>
+                        </ul>
+                        </a>
+                    </li>
+                    <li><a href="sub.html">사업소개
+                        <ul class="submenu">
+                            <li><a href="sub.html">주요사업</a></li>
+                            <li><a href="sub.html">명예의 전당</a></li>
+                            <li><a href="sub.html">투명경영</a></li>
+                            <li><a href="sub.html">유관기관</a></li>
+                        </ul>
+                        </a>
+                    </li>
+                    <li><a href="sub.html">나눔실천
+                        <ul class="submenu">
+                            <li><a href="sub.html">나눔신청</a></li>
+                            <li><a href="sub.html">나눔방법</a></li>
+                            <li><a href="sub.html">희망날개 캠페인</a></li>
+                        </ul>
+                        </a>
+                    </li>
+                    <li><a href="sub.html">활동사항
+                        <ul class="submenu">
+                            <li><a href="sub.html">희망도시락</a></li>
+                            <li><a href="sub.html">희망급식소</a></li>
+                            <li><a href="sub.html">언론보도</a></li>
+                            <li><a href="sub.html">봉사활동&소식</a></li>
+                        </ul>
+                        </a>
+                    </li>
+                    <li><a href="sub.html">커뮤니티
+                         <ul class="submenu">
+                            <li><a href="sub.html">기부복지뉴스</a></li>
+                            <li><a href="sub.html">카드뉴스</a></li>
+                            <li><a href="sub.html">문의사항</a></li>
+                            <li><a href="sub.html">자원봉사 신청</a></li>
+                        </ul>
+                        </a>
+                    </li>
+            </ul>
+        </nav>-->
+				<div class="m_mobile">
+					<a href="#"><img src="img/m_mobilemenu.png"></a>
+				</div>
+				<nav class="left_gnbWrap">
+					<a href="#" class="close">close</a>
+					<ul class="left_gnb">
+						<li>
+							<a href="sub2.html">희망조약돌</a>
+							<ul>
+								<li><a href="sub2.html">단체소개</a></li>
+								<li><a href="sub2.html">인사말</a></li>
+								<li><a href="sub2.html">조직도</a></li>
+								<li><a href="sub2.html">비전과 미션</a></li>
+							</ul>
+						</li>
+						<li>
+							<a href="sub.html">사업소개</a>
+							<ul>
+								<li><a href="sub.html">주요사업</a></li>
+								<li><a href="sub.html">명예의 전당</a></li>
+								<li><a href="sub.html">투명경영</a></li>
+								<li><a href="sub.html">유관기관</a></li>
+							</ul>
+						</li>
+						<li>
+							<a href="sub3.html">나눔실천</a>
+							<ul>
+								<li><a href="sub3.html">나눔신청</a></li>
+								<li><a href="sub3.html">나눔방법</a></li>
+								<li><a href="sub3.html">희망날개 캠페인</a></li>
+							</ul>
+						</li>
+						<li>
+							<a href="sub4.html">활동사항</a>
+							<ul>
+								<li><a href="sub4.html">희망도시락</a></li>
+								<li><a href="sub4.html">희망급식소</a></li>
+								<li><a href="sub4.html">언론보도</a></li>
+								<li><a href="sub4.html">봉사활동&소식</a></li>
+							</ul>
+						</li>
+						<li>
+							<a href="sub5.html">커뮤니티</a>
+							<ul>
+								<li><a href="sub5.html">기부복지뉴스</a></li>
+								<li><a href="sub5.html">카드뉴스</a></li>
+								<li><a href="sub5.html">문의사항</a></li>
+								<li><a href="sub5.html">자원봉사 신청</a></li>
+							</ul>
+						</li>
+					</ul>
+				</nav>
+				<div class="quick">
+					<img src="img/quick_icon.png" alt="하트손">
+					<p>희망날개<br>캠페인</p>
+				</div>
+			</div>
+			<!-- clear -->
+		</header>
+		<article id="mainimg">
+			<div class="inner">
+				<div class="main_t">
+					<h2>누구도 소외받지 않는 사랑과<br>나눔을 꿈꾸는 사회실천<br><span>희망조약돌</span>과 함께해요.</h2>
+					<p>사회적 약자와 더불어 국가를 위해 헌신한<br>'독거어르신'들과 '어린이'들에게 내일을 선물합니다.</p>
+					<p class="btn">자원봉사 신청하기　>>></p>
+				</div>
+			</div>
+			<div class="scroll"><img src="img/scroll.png" alt="스크롤바"></div>
+		</article>
+		<main id="contents">
+			<section class="child">
+				<div class="inner">
+					<div class="c_img"><img src="img/threechild.jpg"></div>
+					<div class="c_text">
+						<div class="title">
+							<h2>국내결손아동지원<span> 지역 아동센터</span></h2>
+							<p><span>결손아동들은 또래 친구들보다 열악한 위생상태로 알레르기 · 천식</span> 등에 쉽게 노출되고<br>평균 비만도도 20% 높게 나타나고 있습니다. 가난의 대물림이 반복되지 않도록<br>작은 관심과 사랑으로 가난의 고리를 끊어주세요.</p>
+
+						</div>
+						<div class="con">
+							<dl class="con1">
+								<div class="img1-1"></div>
+								<dt>교육환경 지원</dt>
+								<dd>어려운 형편으로 꿈을 잃어가는<br>아이들에게 ‘내일의 꿈’을<br>꿀 수 있는 교육환경비를 지원</dd>
+							</dl>
+							<dl class="con1">
+								<div class="img1-2"></div>
+								<dt>문화활동 지원</dt>
+								<dd>무관심속에서 방치되는 아이들을<br>위한 각종 문화활동을 통해<br>차곡차곡 추억 쌓기</dd>
+							</dl>
+							<dl class="con1">
+								<div class="img1-3"></div>
+								<dt>외식 지원</dt>
+								<dd>부모님의 사랑을 받을 시기에<br>외식도 쉽지 않은 아이들을<br>위한 외식 지원</dd>
+							</dl>
+							<dl class="con1">
+								<div class="img1-4"></div>
+								<dt>식사 지원</dt>
+								<dd>부모님의 보살핌을 받지 못하는<br>불우아동을 위한 균형잡힌<br>식사 제공</dd>
+							</dl>
+							<!-- clear -->
+						</div>
+					</div>
+					<!-- clear -->
+				</div>
+				<div class="scroll"><img src="img/scroll.png" alt="스크롤바"></div>
+			</section>
+			<section class="guide">
+				<div class="inner">
+					<h2>활동안내<span>Activity guide</span></h2>
+					<p>희망조약돌 회원금은 이렇게 사용되고 있어요!</p>
+					<ul class="activity">
+						<li class="img02">
+							<div class="img2-1">
+								<div class="plus"></div>
+								<div class="a_text">국내 빈곤가정 지원</div>
+							</div>
+						</li>
+						<li class="img02">
+							<div class="img2-2">
+								<div class="plus"></div>
+								<div class="a_text">국내 결손아동 지원</div>
+							</div>
+						</li>
+						<li class="img02">
+							<div class="img2-3">
+								<div class="plus"></div>
+								<div class="a_text">지역 복지관</div>
+							</div>
+						</li>
+						<li class="img02">
+							<div class="img2-4">
+								<div class="plus"></div>
+								<div class="a_text">국내 독거노인 지원</div>
+							</div>
+						</li>
+						<!-- space -->
+					</ul>
+				</div>
+				<div class="scroll"><img src="img/scroll.png" alt="스크롤바"></div>
+			</section>
+			<section class="community">
+				<div class="inner">
+					<h2>커뮤니티<span>Community</span></h2>
+					<p>희망조약돌 소식과 언론보도된 뉴스를 알려드립니다.</p>
+					<div class="article">
+						<div class="news">
+							<h3>NEWS<span>+</span></h3>
+							<ul class="n_title">
+								<li><span class="s1">헨리 팬클럽, 헨리 생일 기념 마스크 1,011개 희망조약돌에 기부</span><span>[ 희망조약돌 ]</span></li>
+								<li><span class="s1">페넬로페, 희망조약돌에 기저귀 400팩 기부</span><span>[ 희망조약돌 ]</span></li>
+								<li><span class="s1">안성시 수해복구 위한 관심 끊이질 않아...</span><span>[ 희망조약돌 ]</span></li>
+								<li><span class="s1">'트롯퀸' 송가인 선행에 팬클럽도 동참</span><span>[ 희망조약돌 ]</span></li>
+								<li><span class="s1">아주캐피탈, 수재민 돕기에 임직원과 함께 기부</span><span>[ 희망조약돌 ]</span></li>
+							</ul>
+						</div>
+						<div class="cardnews">
+							<h3>CARD NEWS<span>+</span></h3>
+							<div><img src="img/cardnews.jpg" alt="카드뉴스"></div>
+						</div>
+						<!-- clear -->
+					</div>
+				</div>
+				<div class="scroll"><img src="img/scroll.png" alt="스크롤바"></div>
+			</section>
+		</main>
+		<footer id="footer">
+			<div class="inner">
+				<div class="f_logo"><img src="img/f_logo.png" alt="푸터로고"></div>
+				<ul class="f_text">
+					<li class="info">
+						<h3>COMPANY</h3>
+						<p>사단법인 희망조약돌<br>
+							대표자 : 이재원<br>
+							경기도 안양시 동안구 관평로 305번길 3,<br>
+							무림베디빌딩 201호 사단법인</p>
+					</li>
+					<li class="info">
+						<h3>BANK INFO</h3>
+						<p>입금계좌 : 국민은행 271201-04-234576<br>
+							예금주 : 사단법인 희망조약돌</p>
+					</li>
+					<li class="info">
+						<h3>CONTACT</h3>
+						<p><span>031-360-4879</span><br>
+							hopejoyagdol@naver.com</p>
+					</li>
+				</ul>
+				<!-- clear -->
+				<p class="copyright">Copyright@hopejoyagdol. all right reserved.</p>
+			</div>
+		</footer>
+	</div>
+</body></html>
