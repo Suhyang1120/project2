@@ -1388,7 +1388,7 @@ nav .subMenu li:hover a {
 	background-size: cover;
     padding-top: calc(345/1920*100%)}
 
-.introduce2>.inner>h2{padding-top: 87px; font-size: 3.2rem; text-align: center; font-family: 'NotoSansCjKkr-thin';padding-bottom: 100px}
+.introduce2>.inner>h2{padding-top: 87px; font-size: 3.2rem; text-align: center; font-family: 'NotoSansCjKkr-thin';padding-bottom: 90px;}
 
 .introduce2>.inner>h2>span{font-family: 'NotoSansCjKkr-demilight'}
 
@@ -2392,6 +2392,8 @@ nav .subMenu li:hover a {
 
 @media (max-width: 995px) {
 
+    .c_1{padding-top: 1%}
+    .c_1>p:nth-child(2){padding: 5.1%}
 	/* guide */
 	.guide {
 		height: 1500px
@@ -2521,4 +2523,14 @@ nav .subMenu li:hover a {
 	.h_info > li:nth-child(1){font-size: 2rem}
 	.h_info > li:nth-child(2){padding-top: 80px}
 	.h_info > li:nth-child(3){font-size: 2rem; padding-top: 120px}
+}
+
+@media (max-width: 850px) {
+.c_1{padding-top: 2.8%}
+    .c_1>p:nth-child(2){padding: 5%}
+}
+
+@media (max-width: 750px) {
+.c_1{padding-top: 4%}
+    .c_1>p:nth-child(2){padding: 6%}
 }
