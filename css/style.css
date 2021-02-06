@@ -1432,7 +1432,11 @@ nav .subMenu li:hover a {
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center center
+    
 }
+
+.gibu{list-style: revert; font-size: 18px; padding-top: 4.5%; }
+.gibu>li{padding-bottom: 5px}
 
 /* 메인 1700px */
 @media (max-width: 1700px) {
